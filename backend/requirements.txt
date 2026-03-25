@@ -1,8 +1,0 @@
-fastapi
-uvicorn
-google-genai
-pandas
-numpy
-scipy
-httpx
-python-multipart
