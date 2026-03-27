@@ -1,9 +1,9 @@
-# 🦠 Epidemic Simulator
+# 🦠 Epidemic Simulator 🦠
 
 ## Overview
 
-A full-stack epidemic modeling platform with a hybrid simulation engine 
-— deterministic SEIR/RK4 for large populations, stochastic agent-based 
+A full-stack epidemic modeling platform with a hybrid simulation engine, 
+deterministic SEIR/RK4 for large populations, stochastic agent-based 
 simulation across configurable network topologies for smaller ones. 
 The engine is written in C++ with Pthreads parallelism; simulation output 
 is validated against CDC 2022-23 flu surveillance data via Pearson 
@@ -15,9 +15,9 @@ via the Claude API.
 ## How it works
 The system selects its modeling approach based on population size:
 
-- **< 5,000 agents** — stochastic agent-based simulation across 
+- **< 5,000 agents** : stochastic agent-based simulation across 
   Watts-Strogatz small-world or random networks, parallelized with Pthreads
-- **≥ 5,000** — deterministic SEIR model solved via RK4 integration
+- **≥ 5,000** : deterministic SEIR model solved via RK4 integration
 
 This threshold balances individual-level stochastic accuracy against 
 computational performance.
