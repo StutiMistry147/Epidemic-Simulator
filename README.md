@@ -1,4 +1,4 @@
-# 🦠 Epidemic Simulator 🦠
+# Epidemic Simulator
 
 ## Overview
 
