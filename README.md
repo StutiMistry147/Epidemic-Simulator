@@ -141,5 +141,3 @@ http://localhost:5173
 * Parameter calibration (MLE/Bayesian)
 * GPU acceleration
 * Multi-disease simulation
-If you want next step:
-I can turn this into **resume bullets + recruiter pitch** (this project is actually strong enough to carry interviews).
