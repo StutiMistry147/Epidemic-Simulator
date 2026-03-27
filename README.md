@@ -2,27 +2,25 @@
 
 ## Overview
 
-A full-stack epidemic modeling platform that combines **stochastic agent-based simulation** with **deterministic SEIR differential equation models** to analyze and predict disease spread.
-
-The system dynamically selects the appropriate modeling approach based on population size:
-
-* **Agent-Based Simulation** for small populations (< 5,000)
-* **SEIR ODE Model** for large populations (≥ 5,000)
-
-It also supports configurable **network topologies**, integrates **CDC flu data**, and generates **AI-driven epidemiological insights**.
-
----
-
-## Key Features
-
-* Hybrid simulation engine (Agent-based + ODE)
-* Multi-threaded agent simulation using `pthreads`
-* Network-based contact modeling (random + small-world)
-* Real-time React dashboard with epidemic curves
-* CDC data correlation using Pearson coefficient
-* AI-generated outbreak analysis (Claude API)
+A full-stack epidemic modeling platform with a hybrid simulation engine 
+— deterministic SEIR/RK4 for large populations, stochastic agent-based 
+simulation across configurable network topologies for smaller ones. 
+The engine is written in C++ with Pthreads parallelism; simulation output 
+is validated against CDC 2022-23 flu surveillance data via Pearson 
+correlation and analyzed through AI-generated epidemiological reports 
+via the Claude API.
 
 ---
+
+## How it works
+The system selects its modeling approach based on population size:
+
+- **< 5,000 agents** — stochastic agent-based simulation across 
+  Watts-Strogatz small-world or random networks, parallelized with Pthreads
+- **≥ 5,000** — deterministic SEIR model solved via RK4 integration
+
+This threshold balances individual-level stochastic accuracy against 
+computational performance.
 
 ## Sample Output
 
@@ -33,43 +31,6 @@ It also supports configurable **network topologies**, integrates **CDC flu data*
 ### AI-Generated Epidemiological Report
 
 <img width="451" height="530" alt="image" src="https://github.com/user-attachments/assets/9f39e8db-3263-4782-bed3-a6d8b51dd96e" />
-
----
-
-### Rationale
-
-* **Agent-Based Model**: Captures stochastic interactions but scales poorly
-* **ODE Model**: Efficient for large populations but lacks individual variability
-
-This threshold balances **accuracy vs performance**.
-
----
-
-## System Architecture
-
-### Simulation Engine (C++)
-
-* SEIR ODE model using RK4 integration
-* Agent-based simulation with configurable networks
-* Thread pool for parallel agent updates
-* Outputs CSV time-series data
-
----
-
-### Backend API (Python / FastAPI)
-
-* Runs simulation engine via subprocess
-* Parses CSV outputs
-* Performs statistical analysis (Pearson correlation)
-* Generates AI reports using Claude API
-
----
-
-### Frontend Dashboard (React)
-
-* Interactive parameter controls (β, γ, population, etc.)
-* Real-time epidemic curve visualization
-* Displays statistical metrics + AI insights
 
 ---
 
@@ -133,11 +94,3 @@ http://localhost:5173
 * Fixed incubation period (not dynamically modeled)
 * No geographic or mobility modeling
 * CDC comparison limited to a single season dataset
-
-## Future Improvements
-
-* Vaccination & immunity modeling
-* Mobility + spatial spread
-* Parameter calibration (MLE/Bayesian)
-* GPU acceleration
-* Multi-disease simulation
